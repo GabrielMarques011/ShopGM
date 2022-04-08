@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Lista de Administradores</title>
+<link rel="stylesheet" href="../Css/listaAdminEstilo.css">
+<!-- CSS only -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+	<nav th:replace="fragments/PadraoPagina :: cabecalho"></nav>
+
+	<div class="container">
+
+		<table class="table table-dark table-borderless">
+		
+		<h2 class="titulo">Lista de Administradores</h2>
+
+			<thead>
+
+				<tr>
+					<th>Id</th>
+					<th>Nome</th>
+					<th>Email</th>
+					<th>Alterar</th>
+					<th>Excluir</th>
+				</tr>
+
+			</thead>
+
+			<thead>
+
+				<tr th:each="adm:${admins}">
+					<th th:text="${adm.id}"></th>
+					<th th:text="${adm.nome}"></th>
+					<th th:text="${adm.email}"></th>
+					<td class="al"><a th:href="@{/alterarAdmin(id=${adm.id})}"><img class="Icons" alt="excluir" src="../Img/editar.png"></a></td>
+					<td class="ex"><a th:href="@{/excluiAdmin(id=${adm.id})}"><img class="Icons" alt="excluir" src="../Img/remove.png"></a></td>
+				</tr>
+
+			</thead>
+
+		</table>
+
+		<nav aria-label="Page navigation example" class="Pages">
+			<ul class="pagination">
+
+				<li th:class="${pagAtual == 1 ? 'disable' : 'waves-effect'}"><a
+					th:href="${pagAtual > 1 ? pagAtual - 1 : '#'}"><i
+						class="fa fa-arrow-circle-left icone"></i></a></li>
+
+				<li class="page-item" th:each="p:${numPaginas}"><a
+					class="page-link" th:href="${p}" aria-label="Previous"><span
+						th:text="${p}"></span></a></li>
+
+				<li
+					th:class="${pagAtual == totalPages ? 'disable' : 'waves-effect'}"><a
+					th:href="${pagAtual < totalPages ? pagAtual + 1 : '#'}"><i
+						class="fa fa-arrow-circle-right"></i></a></li>
+
+			</ul>
+		</nav>
+		
+		<div class="d-grid gap-2">
+  			<button class="btn btn-primary" type="button"><a href="../formAdmin" class="direcionar">Criar novo Administrador</a></button>
+		</div>
+
+	</div>
+
+	<footer th:replace="fragments/PadraoPagina :: rodape"></footer>
+
+
+	<!-- JavaScript Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+
+</body>
+</html>

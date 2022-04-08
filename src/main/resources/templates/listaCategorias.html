@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Lista de Categorias</title>
+
+<link rel="stylesheet" href="../Css/listaAdminEstilo.css">
+<!-- CSS only -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+	<nav th:replace="fragments/PadraoPagina :: cabecalho"></nav>
+
+	<div class="container">
+
+	<table class="table table-dark table-borderless">
+	
+	<h2 class="titulo">Lista de Categorias</h2>
+	
+	<thead>
+	
+		<tr>
+		
+			<th>Id</th>
+			<th>Nome da Categoria</th>
+			<th>Descrição</th>
+			<th>Palavra Chaves</th>
+			<th>Alterar</th>
+			<th>Excluir</th>
+			
+		</tr>
+		
+	</thead>
+	
+	<thead>
+	
+	<!-- "ingresso" por que foi o nome que apliquei na lista -->
+		<tr th:each="cat:${categoria}">
+		
+			<th th:text="${cat.idCategoria}"></th>
+			<th th:text="${cat.nomeCategoria}"></th>
+			<th th:text="${cat.descricao}"></th>
+			<th th:text="${cat.palavrasChaves}"></th>
+			<th><a th:href="@{/alterarCategoria(idCategoria=${cat.idCategoria})}"><img class="Icons" alt="excluir" src="../Img/editar.png"></a></th>
+			<th><a th:href="@{/excluirCategoria(idCategoria=${cat.idCategoria})}"><img class="Icons" alt="excluir" src="../Img/remove.png"></a></th>
+		
+		</tr>
+	
+	</thead>
+	
+	</table>
+	
+	<nav aria-label="Page navigation example" class="Pages">
+			<ul class="pagination">
+
+				<li th:class="${pagAtual == 1 ? 'disable' : 'waves-effect'}"><a
+					th:href="${pagAtual > 1 ? pagAtual - 1 : '#'}"><i
+						class="fa fa-arrow-circle-left icone"></i></a></li>
+
+				<li class="page-item" th:each="p:${numPaginas}"><a
+					class="page-link" th:href="${p}" aria-label="Previous"><span
+						th:text="${p}"></span></a></li>
+
+				<li
+					th:class="${pagAtual == totalPages ? 'disable' : 'waves-effect'}"><a
+					th:href="${pagAtual < totalPages ? pagAtual + 1 : '#'}"><i
+						class="fa fa-arrow-circle-right"></i></a></li>
+
+			</ul>
+		</nav>
+		
+		<div class="d-grid gap-2">
+  			<button class="btn btn-primary" type="button"><a href="../formCategoria" class="direcionar">Criar nova Categoria</a></button>
+		</div>
+	
+	</div>
+	
+	<footer th:replace="fragments/PadraoPagina :: rodape"></footer>
+
+	<!-- JavaScript Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+
+</body>
+</html>

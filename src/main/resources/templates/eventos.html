@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Formulário Cadastro de Eventos</title>
+
+
+<link rel="stylesheet" href="../Css/listaAdminEstilo.css">
+<!-- CSS only -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	
+</head>
+<body>
+
+	<nav th:replace="fragments/PadraoPagina :: cabecalho"></nav>
+	
+	<div class="container teste">
+	
+	<form action="saveEvento" method="post" class="formulario" enctype="multipart/form-data"> <!-- ectype SÓ FUNCIONA SE TIVER O METODO 'POST' -->
+	
+	<h1 class="titulo">Cadastro de Eventos</h1>
+	
+	<!-- <input type="hidden" name="id" th:value="${categoria?.idCategoria}" /> --> <!-- Aqui eu apliquei o nome da "Class" Principal -->
+	
+	<div class="form-floating mb-3">
+  	<input type="text" class="form-control" name="nome">
+  	<label for="floatingInput">Nome do Evento</label>
+	</div>
+	
+	<!-- MEXENDO NO SELECT E TRAZENDO VALORES DA CLASS 'Categoria' -->
+	<div class="form-floating">
+	<select class="selectEvento" aria-label="Default select example" name="categoria.idCategoria">
+  		<option th:each="c : ${categoria}" th:text="${c.nomeCategoria}" th:value="${c.idCategoria}" class="selectEventos"></option>
+	</select>
+	</div> <br>
+	
+	<div class="form-floating">
+  	<input type="text" class="form-control" name="descricao">
+  	<label for="floatingPassword">Descrição</label>
+	</div> <br>
+	
+	<div class="form-floating">
+  	<input type="text" class="form-control" name="cep" id="cep">
+  	<label for="floatingPassword">CEP</label>
+	</div> <br>
+	
+	<div class="form-floating">
+  	<input type="text" class="form-control" name="endereco" id="logradouro" readonly="readonly">
+  	<label for="floatingPassword" id="endereco">Endereço</label>
+	</div> <br>
+	
+	<div class="form-floating">
+  	<input type="number" class="form-control" name="numero">
+  	<label for="floatingPassword">Número</label>
+	</div> <br>
+	
+	<div class="form-floating">
+  	<input type="text" class="form-control" name="complemento">
+  	<label for="floatingPassword">Complemento</label>
+	</div> <br>
+	
+	<div class="form-floating">
+  	<input type="text" class="form-control" name="bairro" id="bairro" readonly="readonly">
+  	<label for="floatingPassword" id="bairro">Bairro</label>
+	</div> <br>
+	
+	<div class="form-floating">
+  	<input type="text" class="form-control" name="estado" id="uf" readonly="readonly">
+  	<label for="floatingPassword" id="estado">Estado</label>
+	</div> <br>
+	
+	<div class="form-floating">
+  	<input type="text" class="form-control" name="telefone">
+  	<label for="floatingPassword">Telefone</label>
+	</div> <br>
+	
+	<div class="form-floating">
+  	<input type="text" class="form-control" name="horario">
+  	<label for="floatingPassword">Horário</label>
+	</div> <br>
+	
+	<div class="form-floating">
+  	<input type="text" class="form-control" name="posicao">
+  	<label for="floatingPassword">Locais</label>
+	</div> <br>
+	
+	<div class="form-floating">
+  	<input type="text" class="form-control" name="preco">
+  	<label for="floatingPassword">Valor do Ingresso</label>
+	</div> <br>
+	
+	<div class="form-floating">
+  	<input type="text" class="form-control" name="formaPagamento">
+  	<label for="floatingPassword">Forma de Pagamentos</label>
+	</div> <br>
+	
+	<div class="form-floating">
+  	<input type="text" class="form-control" name="idade">
+  	<label for="floatingPassword">Idade Permitida</label>
+	</div>
+	
+	<div class="mb-3">
+  		<label for="formFileMultiple" class="form-label"></label>
+  		<input class="form-control" type="file" id="formFileMultiple" name="fileFotos" multiple>
+	</div> <br>
+	
+	<!-- <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file" multiple>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+      </div>
+    </div> -->
+	
+	<div class="d-grid gap-2 col-6 mx-auto">
+  	<button class="btn btn-primary" type="submit">Salvar</button>
+	</div>
+	
+	</form><!-- fechando o form -->
+	
+	</div>
+	
+	<footer th:replace="fragments/PadraoPagina :: rodape"></footer>
+	
+	<script src="Js/busca.js"></script>
+	
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+
+</body>
+</html>

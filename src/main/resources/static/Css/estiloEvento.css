@@ -1,0 +1,114 @@
+*{
+	font-weight: 500;
+}
+
+body{
+	margin: 0 auto;
+	height: 1350px;
+}
+
+.imgFundo{
+	width: 100px;
+	height: 100px;
+}
+
+.navbar{
+	background-color: #212529 !important;
+}
+
+.nav-link, .navbar-brand{
+	color: white !important;
+}
+
+.nav-link:hover{
+	/* opacity: 0.8 !important; */
+	color: yellow !important;
+	transition: 0.5s !important;
+}
+
+.titulo{
+	text-align: center;
+	margin-top: 20px;
+}
+
+table{
+	margin-top: 50px !important;
+}
+
+.Icons{
+	width: 50px;
+}
+
+.formulario{
+	height: 100vh !important;
+	margin: 0 auto !important;
+}
+
+.pagination{
+	justify-content: center !important;
+	text-align: center !important;
+}
+
+.page-link{
+	background-color: #212529 !important;
+	width: 50px !important;
+	color: white !important;
+}
+
+.page-link:hover{
+	background-color: #212529 !important;
+	opacity: 0.8;
+}
+
+.fa{
+	width: 50px !important;
+	height: 50px !important;
+}
+
+.btn{
+	color: white !important;
+}
+
+.direcionar{
+	color: white;
+	text-decoration: none;
+}
+
+.btn:hover{
+	color: white !important;
+}
+
+.direcionar:hover{
+	color: white;
+}
+
+footer{
+	bottom: 0 !important;
+	position: fixed !important;
+	background-color: #212529 !important;
+	width: 100% !important;
+}
+
+footer p{
+	color: white !important;
+	text-align: center !important;
+	margin-top: 10px !important;
+}
+
+
+/* MEXENDO NA BARRA DE ROLAMENTO */
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px grey; */
+  border-radius: 10px;
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #212529;
+  border-radius: 10px;
+}

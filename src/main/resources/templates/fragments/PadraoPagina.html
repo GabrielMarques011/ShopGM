@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Inicio</title>
+</head>
+<body>
+
+	<!-- <nav class="navbar navbar-dark bg-dark" th:fragment="cabecalho">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">ShopGM</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+				aria-controls="navbarTogglerDemo02" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="../listaAdmin/1">Admins</a></li>
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="../listaCategoria/1">Categorias</a></li>
+				</ul>
+				<form class="d-flex">
+					<input class="form-control me-2" type="search" placeholder="pesquisa..."
+						aria-label="Search">
+					<button class="btn btn-outline-success" type="submit">Buscar</button>
+				</form>
+			</div>
+		</div>
+	</nav> -->
+
+	<nav class="navbar navbar-expand-lg navbar-light" th:fragment="cabecalho">
+		<div class="container-fluid">
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+				aria-controls="navbarTogglerDemo01" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+				<a class="navbar-brand"><img src="../Img/ShopGMfundo.png" class="imgFundo"></a>
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="../listaAdmin/1">Admins</a></li>
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="../listaCategoria/1">Categorias</a></li>
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="../listaCategoria/1">Eventos</a></li>
+				</ul>
+				<form action="/buscarPalavrasChave" class="d-flex">
+					<input class="form-control me-2" type="search" placeholder="Buscar palavra chave"
+						aria-label="Search" name="palavraChave">
+					<button class="btn btn-outline-success" type="submit">Buscar</button>
+				</form>
+			</div>
+		</div>
+	</nav>
+
+	<footer th:fragment="rodape">
+
+		<p>@ShopGM - São Paulo / Cotia</p>
+
+	</footer>
+
+</body>
+</html>
