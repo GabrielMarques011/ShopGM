@@ -8,7 +8,16 @@ body{
 }
 
 .teste{
-	height: 1450px !important;
+	height: 2000px !important;
+}
+
+.formLogin{
+	margin-top: 250px;
+	/* width: 300px; */
+	background: #212529;
+	padding: 50px;
+	color: white;
+	border-radius: 25px;
 }
 
 .imgFundo{
@@ -111,6 +120,15 @@ footer p{
 	color: white !important;
 	text-align: center !important;
 	margin-top: 10px !important;
+}
+
+.imgEvento{
+	width: 150px;
+	height: 150px;
+}
+
+.eventoImg{
+	flex-direction: row;
 }
 
 

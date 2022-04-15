@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html>
 <head>
 <meta charset="utf-8">
-<title>Lista de Categorias</title>
+<title>Lista de Eventos</title>
 
 <link rel="stylesheet" href="../Css/listaAdminEstilo.css">
 <!-- CSS only -->
@@ -19,21 +19,33 @@
 <body>
 
 	<nav th:replace="fragments/PadraoPagina :: cabecalho"></nav>
-
+	
 	<div class="container">
 
 	<table class="table table-dark table-borderless">
 	
-	<h2 class="titulo">Lista de Categorias</h2>
+	<h2 class="titulo">Lista de Eventos</h2>
 	
 	<thead>
 	
 		<tr>
 		
 			<th>Id</th>
-			<th>Nome da Categoria</th>
+			<th>Nome</th>
+			<th>Categoria</th>
 			<th>Descrição</th>
-			<th>Palavra Chaves</th>
+			<th>CEP</th>
+			<th>Endereço</th>
+			<th>Número</th>
+			<th>Complemento</th>
+			<th>Bairro</th>
+			<th>Estado</th>
+			<th>Telefone</th>
+			<th>Horário</th>
+			<th>Locais</th>
+			<th>Valor Ingresso</th>
+			<th>Forma Pagamento</th>
+			<th>Idade Permitida</th>
 			<th>Alterar</th>
 			<th>Excluir</th>
 			
@@ -43,14 +55,27 @@
 	
 	<thead>
 	
-		<tr th:each="cat:${categoria}">
+	<!-- "ingresso" por que foi o nome que apliquei na lista -->
+		<tr th:each="evt:${eventos}">
 		
-			<th th:text="${cat.idCategoria}"></th>
-			<th th:text="${cat.nomeCategoria}"></th>
-			<th th:text="${cat.descricao}"></th>
-			<th th:text="${cat.palavrasChaves}"></th>
-			<th><a th:href="@{/alterarCategoria(idCategoria=${cat.idCategoria})}"><img class="Icons" alt="excluir" src="../Img/editar.png"></a></th>
-			<th><a th:href="@{/excluirCategoria(idCategoria=${cat.idCategoria})}"><img class="Icons" alt="excluir" src="../Img/remove.png"></a></th>
+			<th th:text="${evt.id}"></th>
+			<th th:text="${evt.nome}"></th>
+			<th th:text=${evt.categoria.nomeCategoria}></th>
+			<th th:text="${evt.descricao}"></th>
+			<th th:text="${evt.cep}"></th>
+			<th th:text="${evt.endereco}"></th>
+			<th th:text="${evt.numero}"></th>
+			<th th:text="${evt.complemento}"></th>
+			<th th:text="${evt.bairro}"></th>
+			<th th:text="${evt.estado}"></th>
+			<th th:text="${evt.telefone}"></th>
+			<th th:text="${evt.horario}"></th>
+			<th th:text="${evt.posicao}"></th>
+			<th th:text="${evt.preco}"></th>
+			<th th:text="${evt.formaPagamento}"></th>
+			<th th:text="${evt.idade}"></th>
+			<th><a th:href="@{/alterarEvento(id=${evt.id})}"><img class="Icons" alt="excluir" src="../Img/editar.png"></a></th>
+			<th><a th:href="@{/excluirEvento(id=${evt.id})}"><img class="Icons" alt="excluir" src="../Img/remove.png"></a></th>
 		
 		</tr>
 	
@@ -78,11 +103,11 @@
 		</nav>
 		
 		<div class="d-grid gap-2">
-  			<button class="btn btn-primary" type="button"><a href="../formCategoria" class="direcionar">Criar nova Categoria</a></button>
+  			<button class="btn btn-primary" type="button"><a href="../formEventos" class="direcionar">Criar nova Categoria</a></button>
 		</div>
 	
 	</div>
-	
+
 	<footer th:replace="fragments/PadraoPagina :: rodape"></footer>
 
 	<!-- JavaScript Bundle with Popper -->

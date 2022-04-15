@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -142,6 +143,21 @@ public class AdminShopController {
 		AdminShop adminShop = repository.findById(id).get();
 		model.addAttribute("adminShop", adminShop);
 		return "forward:formAdmin";
+	}
+	
+	@RequestMapping("login")
+	public String login(AdminShop adminLogin, RedirectAttributes attr, HttpSession session) {
+		//BUSCANDO O ADMIN NO BANCO
+		AdminShop admin = repository.findByEmailAndSenha(adminLogin.getEmail(), adminLogin.getSenha());
+		if (admin == null) {
+			attr.addFlashAttribute("mensagemErro", "Login e/ou senha inválido(s)");
+			return "redirect:/";
+		}else {
+			//SALVANDO O ADMIN NA SESSÃO
+			session.setAttribute("usuarioLogado", admin);
+			//REDIRECIONANDO PARA A PROXIMA PAGINA
+			return "redirect:/listaEvento/1";
+		}
 	}
 
 }

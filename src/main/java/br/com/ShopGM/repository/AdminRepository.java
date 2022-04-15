@@ -5,5 +5,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import br.com.ShopGM.model.AdminShop;
 
 public interface AdminRepository extends PagingAndSortingRepository<AdminShop, Long>{
+	
+	public AdminShop findByEmailAndSenha(String email, String senha);
 
 }

@@ -28,82 +28,82 @@
 	
 	<h1 class="titulo">Cadastro de Eventos</h1>
 	
-	<!-- <input type="hidden" name="id" th:value="${categoria?.idCategoria}" /> --> <!-- Aqui eu apliquei o nome da "Class" Principal -->
+	<input type="hidden" name="id" th:value="${eventos?.id}" /><!-- Aqui eu apliquei o nome da "Class" Principal -->
 	
 	<div class="form-floating mb-3">
-  	<input type="text" class="form-control" name="nome">
+  	<input type="text" class="form-control" name="nome" th:value=${eventos?.nome}>
   	<label for="floatingInput">Nome do Evento</label>
 	</div>
 	
 	<!-- MEXENDO NO SELECT E TRAZENDO VALORES DA CLASS 'Categoria' -->
 	<div class="form-floating">
 	<select class="selectEvento" aria-label="Default select example" name="categoria.idCategoria">
-  		<option th:each="c : ${categoria}" th:text="${c.nomeCategoria}" th:value="${c.idCategoria}" class="selectEventos"></option>
+  		<option th:each="c : ${categoria}" th:text="${c.nomeCategoria}" th:value="${c.idCategoria}" class="selectEventos" th:selected="${c.nomeCategoria == eventos?.categoria?.nomeCategoria}"></option>
 	</select>
 	</div> <br>
 	
 	<div class="form-floating">
-  	<input type="text" class="form-control" name="descricao">
+  	<input type="text" class="form-control" name="descricao" th:value=${eventos?.descricao}>
   	<label for="floatingPassword">Descrição</label>
 	</div> <br>
 	
 	<div class="form-floating">
-  	<input type="text" class="form-control" name="cep" id="cep">
+  	<input type="text" class="form-control" name="cep" id="cep" th:value=${eventos?.cep}>
   	<label for="floatingPassword">CEP</label>
 	</div> <br>
 	
 	<div class="form-floating">
-  	<input type="text" class="form-control" name="endereco" id="logradouro" readonly="readonly">
+  	<input type="text" class="form-control" name="endereco" id="logradouro" readonly="readonly" th:value=${eventos?.endereco}>
   	<label for="floatingPassword" id="endereco">Endereço</label>
 	</div> <br>
 	
 	<div class="form-floating">
-  	<input type="number" class="form-control" name="numero">
+  	<input type="number" class="form-control" name="numero" th:value=${eventos?.numero}>
   	<label for="floatingPassword">Número</label>
 	</div> <br>
 	
 	<div class="form-floating">
-  	<input type="text" class="form-control" name="complemento">
+  	<input type="text" class="form-control" name="complemento" th:value=${eventos?.complemento}>
   	<label for="floatingPassword">Complemento</label>
 	</div> <br>
 	
 	<div class="form-floating">
-  	<input type="text" class="form-control" name="bairro" id="bairro" readonly="readonly">
+  	<input type="text" class="form-control" name="bairro" id="bairro" readonly="readonly" th:value=${eventos?.bairro}>
   	<label for="floatingPassword" id="bairro">Bairro</label>
 	</div> <br>
 	
 	<div class="form-floating">
-  	<input type="text" class="form-control" name="estado" id="uf" readonly="readonly">
+  	<input type="text" class="form-control" name="estado" id="uf" readonly="readonly" th:value=${eventos?.estado}>
   	<label for="floatingPassword" id="estado">Estado</label>
 	</div> <br>
 	
 	<div class="form-floating">
-  	<input type="text" class="form-control" name="telefone">
+  	<input type="text" class="form-control" name="telefone" th:value=${eventos?.telefone}>
   	<label for="floatingPassword">Telefone</label>
 	</div> <br>
 	
 	<div class="form-floating">
-  	<input type="text" class="form-control" name="horario">
+  	<input type="text" class="form-control" name="horario" th:value=${eventos?.horario}>
   	<label for="floatingPassword">Horário</label>
 	</div> <br>
 	
 	<div class="form-floating">
-  	<input type="text" class="form-control" name="posicao">
+  	<input type="text" class="form-control" name="posicao" th:value=${eventos?.posicao}>
   	<label for="floatingPassword">Locais</label>
 	</div> <br>
 	
 	<div class="form-floating">
-  	<input type="text" class="form-control" name="preco">
+  	<input type="text" class="form-control" name="preco" th:value=${eventos?.preco}>
   	<label for="floatingPassword">Valor do Ingresso</label>
 	</div> <br>
 	
 	<div class="form-floating">
-  	<input type="text" class="form-control" name="formaPagamento">
+  	<input type="text" class="form-control" name="formaPagamento" th:value=${eventos?.formaPagamento}>
   	<label for="floatingPassword">Forma de Pagamentos</label>
 	</div> <br>
 	
 	<div class="form-floating">
-  	<input type="text" class="form-control" name="idade">
+  	<input type="text" class="form-control" name="idade" th:value=${eventos?.idade}>
   	<label for="floatingPassword">Idade Permitida</label>
 	</div>
 	
@@ -112,15 +112,20 @@
   		<input class="form-control" type="file" id="formFileMultiple" name="fileFotos" multiple>
 	</div> <br>
 	
-	<!-- <div class="file-field input-field">
-      <div class="btn">
-        <span>File</span>
-        <input type="file" multiple>
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Upload one or more files">
-      </div>
-    </div> -->
+	<!-- ESSA DIV SÓ IRA EXISTIR SE TIVER ALGUMA FOTO -->
+	<div th:if="${eventos?.fotos?.length > 0}" class="eventoImg">
+	<input type="hidden" th:value="${eventos?.fotos}" name="fotos"/>
+		<h6>Fotos Cadastradas</h6>
+		<div>
+			<ul>
+				<li th:each="fotos, f : ${eventos?.verFotos()}"><!-- o 'f' é um contador para em que posição eu estou -->
+					<a alt="fotoEvento" th:href="${fotos}" target="_blank"><img th:src="${fotos}" class="imgEvento"></a>
+					<a th:href="@{/excluirFoto(idEventos=${eventos?.id},numFoto =${f.index})}"><i class="fa fa-trash" aria-hidden="true"></i></a><!-- PARA CADA FOTO EU VOU TER UM INDEX -->
+				</li>
+			</ul>
+		</div>
+	</div>
+	
 	
 	<div class="d-grid gap-2 col-6 mx-auto">
   	<button class="btn btn-primary" type="submit">Salvar</button>

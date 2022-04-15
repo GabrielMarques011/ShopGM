@@ -45,4 +45,9 @@ public class Eventos {
 	@Column(columnDefinition = "TEXT")
 	private String fotos;
 	
+	//RETORNA AS FOTOS NO VETOR DE STRING
+	public String[] verFotos() {
+		return fotos.split(";");
+	}
+	
 }
