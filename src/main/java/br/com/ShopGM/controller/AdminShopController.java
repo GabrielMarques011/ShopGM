@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.ShopGM.annotation.Publico;
 import br.com.ShopGM.model.AdminShop;
 import br.com.ShopGM.repository.AdminRepository;
 import br.com.ShopGM.util.HashUtil;
@@ -29,7 +30,7 @@ public class AdminShopController {
 	// vatiavel para persistencia dos dados
 	@Autowired
 	private AdminRepository repository;
-
+	
 	@RequestMapping("formAdmin")
 	public String form() {
 		return "index";
@@ -145,6 +146,8 @@ public class AdminShopController {
 		return "forward:formAdmin";
 	}
 	
+	@Publico
+	//redirecionando depois da tela de login
 	@RequestMapping("login")
 	public String login(AdminShop adminLogin, RedirectAttributes attr, HttpSession session) {
 		//BUSCANDO O ADMIN NO BANCO
@@ -158,6 +161,14 @@ public class AdminShopController {
 			//REDIRECIONANDO PARA A PROXIMA PAGINA
 			return "redirect:/listaEvento/1";
 		}
+	}
+	
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		//INVALIDA A SESSÃO
+		session.invalidate();
+		//VOLTA PARA A PÁGINA INCIAL
+		return "redirect:/";
 	}
 
 }
