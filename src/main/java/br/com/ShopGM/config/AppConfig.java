@@ -9,6 +9,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -26,6 +27,14 @@ public class AppConfig implements WebMvcConfigurer{
 		//ADD O INTERCEPTOR NA APLICAÇÃO
 		registry.addInterceptor(interceptor);
 		
+	}
+	
+	
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+	
+		registry.addMapping("/**");
+	
 	}
 
 	// Não iremos executar essa aplicação, o proprio sistema irá buscar esse metodo
@@ -56,5 +65,6 @@ public class AppConfig implements WebMvcConfigurer{
 		return adapter;
 
 	}
-
+	
+	
 }

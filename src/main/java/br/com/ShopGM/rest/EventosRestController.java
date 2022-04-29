@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.ShopGM.model.Categorias;
+import br.com.ShopGM.annotation.Publico;
 import br.com.ShopGM.model.Eventos;
 import br.com.ShopGM.repository.EventosRepository;
 
@@ -22,12 +22,14 @@ public class EventosRestController {
 	@Autowired
 	private EventosRepository repositoryEventos;
 	
+	@Publico
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public Iterable<Eventos> getEventos(){
 		//LISTA TODOS
 		return repositoryEventos.findAll();
 	}
 	
+	@Publico
 	//METODO QUE BUSCAR O EVENTO PELO ID
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Eventos> getEventos(@PathVariable("id") Long id){
@@ -41,9 +43,10 @@ public class EventosRestController {
 		}
 	}
 	
+	@Publico
 	@RequestMapping(value = "/categoria/{id}", method = RequestMethod.GET)
-	public List<Eventos> getEvento(@PathVariable("id")Long categoria){
-		return repositoryEventos.findAllByCategoriaId(categoria);
+	public List<Eventos> getEvento(@PathVariable("id")Long id){
+		return repositoryEventos.findByCategoriaIdCategoria(id);
 	}
 	
 }

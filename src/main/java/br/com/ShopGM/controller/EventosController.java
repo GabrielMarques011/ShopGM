@@ -13,20 +13,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import br.com.ShopGM.model.Categorias;
 import br.com.ShopGM.model.Eventos;
 import br.com.ShopGM.repository.CategoriasRepository;
 import br.com.ShopGM.repository.EventosRepository;
 import br.com.ShopGM.util.FireBaseUtil;
-import ch.qos.logback.core.util.FileUtil;
 
 @Controller
 public class EventosController {
