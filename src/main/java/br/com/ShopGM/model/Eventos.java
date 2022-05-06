@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 
@@ -36,6 +37,10 @@ public class Eventos {
 	private String idade;
 	private int preco;
 	private boolean acessibilidade;
+	
+	//um Evento tem varias Avaliações
+	@OneToMany(mappedBy = "eventos")
+	private List<Avaliacao> avaliacoes;
 	
 	//RELAÇÃO ENTRE AS TABELAS
 	@ManyToOne
